@@ -61,6 +61,38 @@ else()
 		find_package(PythonInterp 3 REQUIRED)
 	endif()
 endif()
+# Added by Baozhe ZHANG for realsense D435i plugin
+find_package(gazebo_dev REQUIRED)
+find_package(gazebo_msgs REQUIRED)
+find_package(roscpp REQUIRED)
+find_package(nodelet REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(urdf REQUIRED)
+find_package(tf REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(rosconsole REQUIRED)
+find_package(diagnostic_updater REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(gazebo_ros)
+find_package(image_transport REQUIRED)
+find_package(camera_info_manager REQUIRED)
+include_directories(
+  ${gazebo_dev_INCLUDE_DIRS}
+  ${gazebo_msgs_INCLUDE_DIRS}
+  ${roscpp_INCLUDE_DIRS}
+  ${nodelet_INCLUDE_DIRS}
+  ${sensor_msgs_INCLUDE_DIRS}
+  ${urdf_INCLUDE_DIRS}
+  ${tf_INCLUDE_DIRS}
+  ${tf2_ros_INCLUDE_DIRS}
+  ${rosconsole_INCLUDE_DIRS}
+  ${diagnostic_updater_INCLUDE_DIRS}
+  ${std_msgs_INCLUDE_DIRS}
+  ${gazebo_ros_INCLUDE_DIRS}
+  ${image_transport_INCLUDE_DIRS}
+  ${camera_info_manager_INCLUDE_DIRS}
+)
+
 find_package(OpenCV REQUIRED)
 find_package(TinyXML REQUIRED)
 if (BUILD_GSTREAMER_PLUGIN)
@@ -412,6 +444,21 @@ foreach(plugin ${plugins})
 endforeach()
 target_link_libraries(gazebo_opticalflow_plugin ${OpticalFlow_LIBS})
 
+add_library(realsense_gazebo_plugin SHARED src/RealSensePlugin.cpp src/gazebo_ros_realsense.cpp)
+target_link_libraries(realsense_gazebo_plugin
+  ${GAZEBO_LIBRARIES}
+  ${gazebo_dev_LIBRARIES}
+  ${roscpp_LIBRARIES}
+  ${nodelet_LIBRARIES}
+  ${urdf_LIBRARIES}
+  ${tf_LIBRARIES}
+  ${tf2_ros_LIBRARIES}
+  ${gazebo_ros_LIBRARIES}
+  ${rosconsole_LIBRARIES}
+  ${image_transport_LIBRARIES}
+  ${camera_info_manager_LIBRARIES})
+list(APPEND plugins realsense_gazebo_plugin)
+
 # If BUILD_ROS2_PLUGINS set to ON, build plugins that have ROS dependencies
 # Current plugins that can be used with ROS interface: gazebo_motor_failure_plugin
 if (BUILD_ROS2_PLUGINS)
@@ -477,7 +524,7 @@ set(plugins
 
   add_library(ForceVisual SHARED src/force_visual/force_visual.cpp)
   list(APPEND plugins ForceVisual)
-  
+
   add_library(AdvancedLiftDragPlugin SHARED src/liftdrag_plugin/advanced_liftdrag_plugin.cpp)
   list(APPEND plugins LiftDragPlugin)
 #endif()
