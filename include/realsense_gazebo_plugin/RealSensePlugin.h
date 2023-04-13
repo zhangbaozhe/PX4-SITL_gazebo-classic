@@ -29,10 +29,10 @@
 #include <string>
 
 namespace gazebo {
-#define DEPTH_CAMERA_NAME "depth"
-#define COLOR_CAMERA_NAME "color"
-#define IRED1_CAMERA_NAME "ired1"
-#define IRED2_CAMERA_NAME "ired2"
+#define DEPTH_CAMERA_NAME "camera_depth_frame::depth"
+#define COLOR_CAMERA_NAME "camera_color_frame::color"
+#define IRED1_CAMERA_NAME "camera_ired1_frame::ired1"
+#define IRED2_CAMERA_NAME "camera_ired2_frame::ired2"
 
 struct CameraParams {
   CameraParams() {}

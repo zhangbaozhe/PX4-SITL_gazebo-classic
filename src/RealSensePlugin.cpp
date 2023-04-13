@@ -132,6 +132,14 @@ void RealSensePlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
 
   // Sensors Manager
   sensors::SensorManager *smanager = sensors::SensorManager::Instance();
+  // auto sensors = smanager->GetSensors();
+  // for (const auto & sensor : sensors)
+  //   std::cout << "Sensor name: " << prefix + sensor->ScopedName() << std::endl;
+
+  // auto temp =
+  //                      smanager->GetSensor("default::iris_D435ix4::front_camera::camera_depth_frame::depth");
+  // std::cout << "Depth cam: " << temp->Name() << std::endl;
+  prefix = this->world->Name() + "::" + this->rsModel->GetName() + "::" + prefix;
 
   // Get Cameras Renderers
   this->depthCam = std::dynamic_pointer_cast<sensors::DepthCameraSensor>(
