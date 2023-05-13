@@ -58,7 +58,9 @@
           <visualize>1</visualize>
           <samples>24000</samples>
           <downsample>1</downsample>
-          <csv_file_name>model://livox_laser/scan_mode/mid360.csv</csv_file_name>
+          <csv_file_name>
+            model://livox_laser/scan_mode/mid360.csv
+          </csv_file_name>
           <ros_topic>scan</ros_topic>
         </plugin>
         <pose>-0.400097 -0.999999 0.5557 0 -0 3.14149</pose>
