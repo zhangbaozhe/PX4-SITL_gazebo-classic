@@ -459,6 +459,17 @@ target_link_libraries(realsense_gazebo_plugin
   ${camera_info_manager_LIBRARIES})
 list(APPEND plugins realsense_gazebo_plugin)
 
+add_library(livox_laser_simulation SHARED
+  src/livox_laser_simulation/livox_points_plugin.cpp
+  src/livox_laser_simulation/livox_ode_multiray_shape.cpp)
+target_link_libraries(livox_laser_simulation
+  ${GAZEBO_LIBRARIES}
+  ${gazebo_dev_LIBRARIES}
+  ${roscpp_LIBRARIES}
+  ${tf_LIBRARIES}
+  RayPlugin
+  libprotobuf.so.9)
+
 # If BUILD_ROS2_PLUGINS set to ON, build plugins that have ROS dependencies
 # Current plugins that can be used with ROS interface: gazebo_motor_failure_plugin
 if (BUILD_ROS2_PLUGINS)
