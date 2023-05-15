@@ -17,11 +17,15 @@
       </inertial>
       <visual name="visual">
         <geometry>
-          <cylinder><radius>0.006</radius><length>0.05</length></cylinder>
+          <mesh>
+            <uri>model://livox_laser/mesh/mid360.stl</uri>
+            <!-- From mm to m -->
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
         </geometry>
         <material>
           <script>
-            <name>Gazebo/Black</name>
+            <name>Gazebo/White</name>
           </script>
         </material>
       </visual>

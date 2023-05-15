@@ -7,7 +7,7 @@
 
     <include>
       <uri>model://livox_laser</uri>
-      <pose>0 0 0.2 0 0 3.14159</pose>
+      <pose>0 0 0.05 0 0 3.14159</pose>
     </include>
 
     <joint name="livox_laser_joint" type="fixed">
