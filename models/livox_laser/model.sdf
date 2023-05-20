@@ -67,7 +67,7 @@
           </csv_file_name>
           <ros_topic>scan</ros_topic>
         </plugin>
-        <pose>-0.400097 -0.999999 0.5557 0 -0 3.14149</pose>
+        <pose>0 0 0.5557 0 -0 0</pose>
       </sensor>
     </link>
   </model>
